@@ -36,7 +36,7 @@ public class DataLoader {
                         LocalDateTime sleepEnd = LocalDateTime.parse(line[1], formatter);
                         SleepQuality quality = SleepQuality.valueOf(line[2].toUpperCase());
                         return new SleepingSession(sleepStart, sleepEnd, quality);
-                    } )
+                    })
                     .collect(Collectors.toList());
         }
 
