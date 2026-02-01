@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 public class SleeplessNightCounter implements Function<List<SleepingSession>, SleepAnalysisResult> {
 
-    private final int HOUR_NEW_DAY = 12;
+    private static final int HOUR_NEW_DAY = 12;
 
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
