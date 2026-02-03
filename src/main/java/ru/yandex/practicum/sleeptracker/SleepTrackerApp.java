@@ -9,7 +9,6 @@ import java.util.function.Function;
 
 public class SleepTrackerApp {
 
-    public static final String pathToSleep = "src/main/resources/sleep_log.txt";
     public static final List<Function<List<SleepingSession>, SleepAnalysisResult>> FUNCTIONS = List.of(
             new SessionCounter(),
             new MinLengthSession(),
@@ -22,9 +21,14 @@ public class SleepTrackerApp {
 
     public static void main(String[] args) {
 
+        if (args.length != 1) {
+            System.out.println("Ошибка: необходимо подать путь к файлу как аргумент командной строки");
+            System.exit(1);
+        }
+
         List<SleepingSession> sessions;
         try {
-            DataLoader loader = new DataLoader(Paths.get(pathToSleep));
+            DataLoader loader = new DataLoader(Paths.get(args[0]));
             sessions = loader.load();
             List<SleepAnalysisResult> results = SleepTrackerApp.analyze(sessions);
             results.forEach(System.out::println);
